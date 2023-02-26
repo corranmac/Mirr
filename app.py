@@ -7,9 +7,9 @@ def init():
     global pipe
     
     device = 0 if torch.cuda.is_available() else -1
-    pix2pix=True
+
     model_ckpt = "timbrooks/instruct-pix2pix"
-    pipe = StableDiffusionInstructPix2PixPipeline.from_pretrained(model_ckpt, torch_dtype=torch.float16).to("cuda")
+    pipe = StableDiffusionInstructPix2PixPipeline.from_pretrained(model_ckpt, torch_dtype=torch.float16).to(device)
     pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(pipe.scheduler.config)
     pipe.to(device)
     pipe.safety_checker=None
