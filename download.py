@@ -3,11 +3,12 @@
 
 # In this example: A Huggingface BERT model
 
-from transformers import pipeline
+from diffusers import StableDiffusionInstructPix2PixPipeline
+import torch
 
 def download_model():
     # do a dry run of loading the huggingface model, which will download weights
-    pipeline('fill-mask', model='bert-base-uncased')
+    StableDiffusionInstructPix2PixPipeline.from_pretrained(model_ckpt, torch_dtype=torch.float16);
 
 if __name__ == "__main__":
     download_model()
